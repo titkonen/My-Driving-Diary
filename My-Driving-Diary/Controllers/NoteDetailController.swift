@@ -14,7 +14,7 @@ protocol NoteDelegate {
 
 class NoteDetailController: UIViewController {
     
-    // MARK: PROPERTIES
+    // MARK: Properties
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, YYYY hh:mm"
@@ -129,7 +129,7 @@ class NoteDetailController: UIViewController {
         return textField
     }()
     
-    // MARK: LIFE CYCLE
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -217,7 +217,7 @@ class NoteDetailController: UIViewController {
 //        self.navigationItem.setRightBarButtonItems(topItems, animated: false)
     }
     
-    // MARK: FUNCTIONS
+    // MARK: Functions
     fileprivate func setupUI() {
         view.addSubview(dateLabel)
         view.addSubview(endingPlace)
@@ -260,7 +260,6 @@ class NoteDetailController: UIViewController {
         driveDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         driveDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         driveDescription.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -310).isActive = true
-  
     }
 
 }

@@ -1,21 +1,20 @@
 import UIKit
 
-class NoteCell: UITableViewCell {
+class ExpenseCell: UITableViewCell {
     
-    var noteData: Note! {
+    var expenseData: Expense! {
         didSet {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yy"
-            dateLabel.text = dateFormatter.string(from: noteData.timestamp ?? Date())
-            endingPlaceLabel.text = noteData.endingPlace
-            startingPlaceLabel.text = noteData.startingPlace
+            dateLabel.text = dateFormatter.string(from: expenseData.timestamp ?? Date())
+            amountLabel.text = expenseData.amount
         }
     }
     
-    /// endingPlaceLabel
-    fileprivate var endingPlaceLabel: UILabel = {
+    /// amountLabel
+    fileprivate var amountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Drive ending place"
+        label.text = "Amount label"
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -28,20 +27,10 @@ class NoteCell: UITableViewCell {
         label.textColor = .gray
         return label
     }()
-        
-    /// Preview label
-    fileprivate var startingPlaceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Drive starting place "
-        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        label.textColor = .gray
-        //label.textColor = UIColor.gray.withAlphaComponent(0.8)
-        return label
-    }()
     
     /// horizontal stack view
     fileprivate lazy var horizontalStackView: UIStackView = {
-        let s = UIStackView(arrangedSubviews: [dateLabel, startingPlaceLabel, UIView()])
+        let s = UIStackView(arrangedSubviews: [dateLabel, UIView()])
         s.axis = .horizontal
         s.spacing = 10
         s.alignment = .leading
@@ -50,7 +39,7 @@ class NoteCell: UITableViewCell {
     
     /// vertical stack view
     fileprivate lazy var verticalStackView: UIStackView = {
-        let s = UIStackView(arrangedSubviews: [endingPlaceLabel, horizontalStackView])
+        let s = UIStackView(arrangedSubviews: [amountLabel, horizontalStackView])
         s.axis = .vertical
         s.spacing = 4
         s.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +48,7 @@ class NoteCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //contentView.backgroundColor = .cyan
+        //contentView.backgroundColor = .gray
         contentView.addSubview(verticalStackView)
         verticalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
@@ -70,7 +59,4 @@ class NoteCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-     
 }
-
-

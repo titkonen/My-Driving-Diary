@@ -19,6 +19,8 @@
 		0FA72E1B2771F5A10062078E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E1A2771F5A10062078E /* TabBar.swift */; };
 		0FA72E1E2771FC900062078E /* ExpensesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E1D2771FC900062078E /* ExpensesController.swift */; };
 		0FA72E202771FECC0062078E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E1F2771FECC0062078E /* SettingsController.swift */; };
+		0FA72E23277209780062078E /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E22277209780062078E /* ExpenseCell.swift */; };
+		0FA72E2527720E730062078E /* ExpenseDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E2427720E730062078E /* ExpenseDetailController.swift */; };
 		0FFD810826DE333900698EF6 /* NoteDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD810726DE333900698EF6 /* NoteDetailController.swift */; };
 		0FFD810B26DE48D200698EF6 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD810A26DE48D200698EF6 /* FolderCell.swift */; };
 		0FFD810D26DE995B00698EF6 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD810C26DE995B00698EF6 /* NoteCell.swift */; };
@@ -42,6 +44,9 @@
 		0FA72E1A2771F5A10062078E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0FA72E1D2771FC900062078E /* ExpensesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesController.swift; sourceTree = "<group>"; };
 		0FA72E1F2771FECC0062078E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		0FA72E212772068D0062078E /* Simple-cms 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Simple-cms 5.xcdatamodel"; sourceTree = "<group>"; };
+		0FA72E22277209780062078E /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		0FA72E2427720E730062078E /* ExpenseDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailController.swift; sourceTree = "<group>"; };
 		0FFD810726DE333900698EF6 /* NoteDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailController.swift; sourceTree = "<group>"; };
 		0FFD810A26DE48D200698EF6 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		0FFD810C26DE995B00698EF6 /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
@@ -99,6 +104,7 @@
 				0FFD810726DE333900698EF6 /* NoteDetailController.swift */,
 				0FA72E1D2771FC900062078E /* ExpensesController.swift */,
 				0FA72E1F2771FECC0062078E /* SettingsController.swift */,
+				0FA72E2427720E730062078E /* ExpenseDetailController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -116,6 +122,7 @@
 			children = (
 				0FFD810A26DE48D200698EF6 /* FolderCell.swift */,
 				0FFD810C26DE995B00698EF6 /* NoteCell.swift */,
+				0FA72E22277209780062078E /* ExpenseCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -202,6 +209,8 @@
 				0FA72E202771FECC0062078E /* SettingsController.swift in Sources */,
 				0FFD810B26DE48D200698EF6 /* FolderCell.swift in Sources */,
 				0FFD810826DE333900698EF6 /* NoteDetailController.swift in Sources */,
+				0FA72E2527720E730062078E /* ExpenseDetailController.swift in Sources */,
+				0FA72E23277209780062078E /* ExpenseCell.swift in Sources */,
 				0F1ABB6A26DD05A60023C662 /* AppDelegate.swift in Sources */,
 				0F84856126E0F9220027D42C /* Simple-cms.xcdatamodeld in Sources */,
 				0F1ABB6C26DD05A60023C662 /* SceneDelegate.swift in Sources */,
@@ -407,12 +416,13 @@
 		0F84855F26E0F9220027D42C /* Simple-cms.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0FA72E212772068D0062078E /* Simple-cms 5.xcdatamodel */,
 				0F6AFAA62770BD0D00FDD991 /* Simple-cms 4.xcdatamodel */,
 				0F6AFAA52770B94300FDD991 /* Simple-cms 3.xcdatamodel */,
 				0F04748C26E61D8900474CE3 /* Simple-cms 2.xcdatamodel */,
 				0F84856026E0F9220027D42C /* ViestitApp.xcdatamodel */,
 			);
-			currentVersion = 0F6AFAA62770BD0D00FDD991 /* Simple-cms 4.xcdatamodel */;
+			currentVersion = 0FA72E212772068D0062078E /* Simple-cms 5.xcdatamodel */;
 			path = "Simple-cms.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

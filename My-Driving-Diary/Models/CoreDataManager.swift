@@ -93,9 +93,88 @@ struct CoreDataManager {
         } catch let err {
             print("Failed to update note", err)
         }
-        
     }
     
+    // MARK: Create New Expense
+    func createNewExpense(
+        timestamp: Date,
+        amount: String,
+        expenseType: String,
+        details: String) -> Expense {
+        //noteFolder: ClientsCategory) -> Note {
+        let context = persistentContainer.viewContext
+        let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context) as! Expense
+        
+        newExpense.timestamp = timestamp
+        newExpense.amount = amount
+        newExpense.expenseType = expenseType
+        newExpense.details = details
+        
+        do {
+            try context.save()
+            return newExpense
+        } catch let error {
+            print("Failed to save new expense", error)
+          return newExpense
+        }
+    }
     
+    /*
+    // MARK: Fetch expenses
+    func fetchExpenses(from Expense) -> [Expense] {
+        guard let folderNotes = expenses?.allObjects as? [Expense] else {
+            return []
+        }
+        return folderNotes
+    }*/
+    
+    // MARK: Fetch expenses v2
+    func fetchExpenses() -> [Expense] {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Expense>(entityName: "Expense")
+        
+        do {
+            let noteFolders = try context.fetch(fetchRequest)
+            return noteFolders
+        } catch let error {
+            print("Failed to fetch expenses",error)
+            return []
+        }
+    }
+    
+    // MARK: Delete expense
+    func deleteNote(expense: Expense) -> Bool {
+        let context = persistentContainer.viewContext
+        context.delete(expense)
+        
+        do {
+            try context.save()
+            return true
+        } catch let error {
+            print("Error deleting expense entity instance", error)
+            return false
+        }
+    }
+    
+    // MARK: Update expense
+    func saveUpdatedExpense(
+        expense: Expense,
+        newAmount: String,
+        newExpenseType: String,
+        newDetails: String
+    ) {
+        let context = persistentContainer.viewContext
+        
+        expense.timestamp = Date()
+        expense.amount = newAmount
+        expense.expenseType = newExpenseType
+        expense.details = newDetails
+        
+        do {
+            try context.save()
+        } catch let error {
+            print("Failed to update note", error)
+        }
+    }
     
 }

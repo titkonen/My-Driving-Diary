@@ -52,9 +52,7 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
     
     @objc fileprivate func createNewNote() {
         let noteDetailController = NoteDetailController()
-        
         noteDetailController.delegate = self
-        
         navigationController?.pushViewController(noteDetailController, animated: true)
     }
     
@@ -83,7 +81,7 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
     
 } /// End of main class
 
-// MARK: EXTENSION - TableView Data Source
+// MARK: EXTENSION TableView Data Source
 extension FolderNotesController {
     
     // MARK: DELETING
