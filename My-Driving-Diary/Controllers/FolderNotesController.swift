@@ -2,7 +2,7 @@ import UIKit
 
 class FolderNotesController: UITableViewController, UISearchBarDelegate {
     
-    // MARK: PROPERTIES
+    // MARK: Properties
     let searchController = UISearchController(searchResultsController: nil)
     
    /* var folderData: ClientsCategory! {
@@ -17,10 +17,10 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
     var cachedText: String = ""
     fileprivate let CELL_ID:String = "CELL_ID"
     
-    // MARK: LIFE CYCLE
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Driving diary"
+        self.navigationItem.title = "Driving Diary"
         setupTableView()
         setupSearchBar()
     }
@@ -31,7 +31,6 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
         let editButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createNewNote))
         self.navigationItem.setRightBarButtonItems([editButton], animated: false)
 
-        
         let items: [UIBarButtonItem] = [
            // UIBarButtonItem(barButtonSystemItem: .organize, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -40,12 +39,10 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
             UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(self.createNewNote))
         ]
         self.toolbarItems = items
-        
         tableView.reloadData()
     }
     
-    // MARK: FUNCTIONS
-    
+    // MARK: Functions
     fileprivate func setupSearchBar() {
         self.definesPresentationContext = true
         navigationItem.searchController = searchController
