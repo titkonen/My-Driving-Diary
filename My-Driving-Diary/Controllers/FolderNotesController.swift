@@ -79,7 +79,7 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-} /// End of main class
+} ///END
 
 // MARK: EXTENSION TableView Data Source
 extension FolderNotesController {
@@ -109,10 +109,8 @@ extension FolderNotesController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! NoteCell ///Casting =>  as! NoteCell  to custom cell
-        
         let noteForRow = self.filteredNotes[indexPath.row]
         cell.noteData = noteForRow
-        
         return cell
     }
     
@@ -125,7 +123,6 @@ extension FolderNotesController {
         let noteDetailController = NoteDetailController()
         let noteForRow = self.filteredNotes[indexPath.row]
         noteDetailController.noteData = noteForRow
-        
         navigationController?.pushViewController(noteDetailController, animated: true)
     }
     

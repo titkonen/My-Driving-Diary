@@ -1,9 +1,11 @@
 import UIKit
 
-class ExpensesController: UITableViewController {
+class ExpensesController: UITableViewController, UISearchBarDelegate {
 
     // MARK: Properties
+    let searchController = UISearchController(searchResultsController: nil)
     fileprivate var expenses = [Expense]()
+    fileprivate var filteredExpenses = [Expense]()
     var cachedText: String = ""
     fileprivate let CELL_ID:String = "CELL_ID"
     
@@ -13,7 +15,7 @@ class ExpensesController: UITableViewController {
         self.navigationItem.title = "Expenses"
         view.backgroundColor = .white
         setupTableView()
-        //setupSearchBar()
+        setupExpenseSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,8 +28,11 @@ class ExpensesController: UITableViewController {
     }
     
     // MARK: Functions
-    fileprivate func setupTableView() {
-        tableView.register(ExpenseCell.self, forCellReuseIdentifier: CELL_ID)
+    fileprivate func setupExpenseSearchBar() {
+        self.definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true /// true
+        searchController.searchBar.delegate = self ///as! UISearchBarDelegate
     }
     
     @objc fileprivate func createNewExpense() {
@@ -35,27 +40,66 @@ class ExpensesController: UITableViewController {
         expenseDetailController.delegate = self
         navigationController?.pushViewController(expenseDetailController, animated: true)
     }
+    
+    fileprivate func setupTableView() {
+        tableView.register(ExpenseCell.self, forCellReuseIdentifier: CELL_ID)
+    }
+    
+    // MARK: SEARCH: FILTERING DATA
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredExpenses = expenses.filter({ (expense) -> Bool in
+            return expense.expenseType?.lowercased().contains(searchText.lowercased()) ?? false
+        })
+        if searchBar.text!.isEmpty && filteredExpenses.isEmpty {
+            filteredExpenses = expenses
+        }
+        cachedText = searchText
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if !cachedText.isEmpty && !filteredExpenses.isEmpty {
+            searchController.searchBar.text = cachedText
+        }
+    }
         
-}
+} ///END
 
 // MARK: EXTENSION TableView Data Source
 extension ExpensesController {
     
+    // MARK: Deleting
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        var actions = [UITableViewRowAction]()
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
+            print("trying to delete item at indexpath", indexPath)
+            
+            let targetRow = indexPath.row
+            
+            if CoreDataManager.shared.deleteExpense(expense: self.expenses[targetRow]) {
+                self.expenses.remove(at: targetRow)
+                self.filteredExpenses.remove(at: targetRow)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } /// Deletes from Core Data
+        }
+        actions.append(deleteAction)
+        return actions
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.expenses.count
+        return self.filteredExpenses.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! ExpenseCell ///Casting =>  as! ExpenseCell  to custom cell
-        
         let noteForRow = self.expenses[indexPath.row]
         cell.expenseData = noteForRow
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 60
     }
     
     ///Push content to ExpenseDetailController
@@ -63,7 +107,6 @@ extension ExpensesController {
         let expenseDetailController = ExpenseDetailController()
         let noteForRow = self.expenses[indexPath.row]
         expenseDetailController.expenseData = noteForRow
-        
         navigationController?.pushViewController(expenseDetailController, animated: true)
     }
 }
@@ -83,7 +126,7 @@ extension ExpensesController: ExpenseDelegate {
             details: details
         ) ///Creates new expense to the list and coredata
         expenses.append(newExpense)
-        //filteredNotes.append(newNote)
+        filteredExpenses.append(newExpense)
         self.tableView.insertRows(at: [IndexPath(row: expenses.count - 1, section: 0)], with: .fade)
     }
 }

@@ -143,7 +143,7 @@ struct CoreDataManager {
     }
     
     // MARK: Delete expense
-    func deleteNote(expense: Expense) -> Bool {
+    func deleteExpense(expense: Expense) -> Bool {
         let context = persistentContainer.viewContext
         context.delete(expense)
         
