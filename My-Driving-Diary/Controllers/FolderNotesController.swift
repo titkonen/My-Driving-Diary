@@ -29,16 +29,18 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
         super.viewWillAppear(animated)
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createNewNote))
-        self.navigationItem.setRightBarButtonItems([editButton], animated: false)
+        let numberOfEntries = UIBarButtonItem(title: "\(notes.count) Entries", style: .done, target: nil, action: nil)
+        self.navigationItem.setRightBarButtonItems([editButton, numberOfEntries], animated: false)
+      
 
-        let items: [UIBarButtonItem] = [
+        /*let items: [UIBarButtonItem] = [
            // UIBarButtonItem(barButtonSystemItem: .organize, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "\(notes.count) Ideas", style: .done, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(self.createNewNote))
         ]
-        self.toolbarItems = items
+        self.toolbarItems = items */
         tableView.reloadData()
     }
     

@@ -22,7 +22,8 @@ class ExpensesController: UITableViewController, UISearchBarDelegate {
         super.viewWillAppear(animated)
         
         let editButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.createNewExpense))
-        self.navigationItem.setRightBarButtonItems([editButton], animated: false)
+        let numberOfEntries = UIBarButtonItem(title: "\(expenses.count) Entries", style: .done, target: nil, action: nil)
+        self.navigationItem.setRightBarButtonItems([editButton, numberOfEntries], animated: false)
         
         tableView.reloadData()
     }
