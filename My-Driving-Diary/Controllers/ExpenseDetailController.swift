@@ -81,12 +81,33 @@ class ExpenseDetailController: UIViewController {
         return textField
     }()
     
+    fileprivate var myImageView: UIImageView = {
+        let photobox = UIImageView()
+        photobox.frame = CGRect(x: 20, y: 300, width: 300, height: 200)
+        photobox.backgroundColor = .lightGray
+        
+        return photobox
+    }()
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         setupUI()
+        
+        //Encoding
+        let image = UIImage(named: "demokuva")
+        let imageData:NSData = image!.pngData()! as NSData
+        
+        //print(imageData)
+        
+        //Saved Image
+        UserDefaults.standard.set(imageData, forKey: "savedImage")
+        
+        // Decode
+        let data = UserDefaults.standard.object(forKey: "savedImage") as! NSData
+        myImageView.image = UIImage(data: data as Data)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -129,6 +150,7 @@ class ExpenseDetailController: UIViewController {
         view.addSubview(amount)
         view.addSubview(expenseType)
         view.addSubview(details)
+        view.addSubview(myImageView)
         
         dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true

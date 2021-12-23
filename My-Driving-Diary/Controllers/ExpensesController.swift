@@ -1,7 +1,7 @@
 import UIKit
 
 class ExpensesController: UITableViewController, UISearchBarDelegate {
-
+        
     // MARK: Properties
     let searchController = UISearchController(searchResultsController: nil)
     fileprivate var expenses = [Expense]()
