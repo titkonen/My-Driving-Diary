@@ -100,6 +100,15 @@ class ExpenseDetailController: UIViewController {
         return button
     }()
     
+    fileprivate var savePhoto: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemGreen
+        button.frame = CGRect(x: 160, y: 300, width: 100, height: 40)
+        button.setTitle("Save Photo", for: .normal)
+        button.addTarget(self, action: #selector(savePhotoButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -153,7 +162,7 @@ class ExpenseDetailController: UIViewController {
         }
     }
     
-    // MARK: SHOW PHOTO
+    // MARK: Photo functions
     func show(image: UIImage) {
         myImageView.image = image
         myImageView.isHidden = false
@@ -162,11 +171,17 @@ class ExpenseDetailController: UIViewController {
         //tableView.reloadData()
     }
     
-    // MARK: Functions
     @objc func loadPhotoButtonPressed() {
         pickPhoto()
     }
     
+    @objc func savePhotoButtonPressed() {
+        print("Save pressed")
+    }
+    
+    
+    
+    // MARK: Functions
     fileprivate func setupUI() {
         view.addSubview(dateLabel)
         view.addSubview(amount)
@@ -174,6 +189,7 @@ class ExpenseDetailController: UIViewController {
         view.addSubview(details)
         view.addSubview(myImageView)
         view.addSubview(loadPhoto)
+        view.addSubview(savePhoto)
         
         dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
