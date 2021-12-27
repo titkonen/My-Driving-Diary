@@ -13,7 +13,7 @@ class ExpenseDetailController: UIViewController {
     
     // MARK: Photo Properties
     var image: UIImage? /// Adding photo properties
-    ///
+    
     // MARK: Properties
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -105,27 +105,31 @@ class ExpenseDetailController: UIViewController {
         button.backgroundColor = .systemGreen
         button.frame = CGRect(x: 160, y: 300, width: 100, height: 40)
         button.setTitle("Save Photo", for: .normal)
-        button.addTarget(self, action: #selector(savePhotoButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(savePhotoButtonPressed), for: .touchUpInside) ///savePhotoButtonPressed
         return button
     }()
     
     
-    // MARK: Life Cycle
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
         
-        //Encoding
+        // Load image
         let image = UIImage(named: "placeholder")
+        
         let imageData:NSData = image!.pngData()! as NSData
         
         //Saved Image
-        UserDefaults.standard.set(imageData, forKey: "savedImage")
+//        UserDefaults.standard.set(imageData, forKey: "savedImage")
         
         // Decode
-        let data = UserDefaults.standard.object(forKey: "savedImage") as! NSData
-        myImageView.image = UIImage(data: data as Data)
+        //let data = UserDefaults.standard.object(forKey: "savedImage") as! NSData
+        //myImageView.image = UIImage(data: data as Data)
+        
+        fetchImageFromDirectory()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -163,6 +167,25 @@ class ExpenseDetailController: UIViewController {
     }
     
     // MARK: Photo functions
+   
+    
+    private func fetchImageFromDirectory() -> UIImage? {
+        
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = documents.appendingPathComponent("name.jpg")
+        
+        do {
+            let imageData = try Data(contentsOf: url)
+            print("fetched 2")
+            //myImageView.image = image
+            return UIImage(data: imageData)
+        } catch {
+            print("Unable to Write Data to Disk (\(error))")
+        }
+        return nil
+        
+    }
+    
     func show(image: UIImage) {
         myImageView.image = image
         myImageView.isHidden = false
@@ -177,7 +200,28 @@ class ExpenseDetailController: UIViewController {
     
     @objc func savePhotoButtonPressed() {
         print("Save pressed")
+        
+        // Convert to Data
+        if let data = image?.jpegData(compressionQuality: 0.6) {
+        //if let data = image?.pngData() {
+            // Create URL
+            let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            //let url = documents.appendingPathComponent("placeholder.jpg")
+            let url = documents.appendingPathComponent("name.jpg")
+            
+            do {
+                // Write to disk
+                try data.write(to: url)
+                
+                // Store URL in User Defaults
+                UserDefaults.standard.set(url, forKey: "background")
+            } catch {
+                print("Unable to Write Data to Disk (\(error))")
+            }
+        }
     }
+    
+
     
     
     
@@ -286,5 +330,4 @@ extension ExpenseDetailController: UIImagePickerControllerDelegate,UINavigationC
     }
     
 }
-
 
