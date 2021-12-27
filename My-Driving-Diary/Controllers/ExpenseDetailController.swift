@@ -104,15 +104,12 @@ class ExpenseDetailController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         setupUI()
         
         //Encoding
-        let image = UIImage(named: "demokuva")
+        let image = UIImage(named: "placeholder")
         let imageData:NSData = image!.pngData()! as NSData
-        
-        //print(imageData)
         
         //Saved Image
         UserDefaults.standard.set(imageData, forKey: "savedImage")

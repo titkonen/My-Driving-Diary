@@ -16,6 +16,7 @@
 		0F1ABB8126DD16BF0023C662 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1ABB8026DD16BF0023C662 /* extension.swift */; };
 		0F84856126E0F9220027D42C /* Driving-Diary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F84855F26E0F9220027D42C /* Driving-Diary.xcdatamodeld */; };
 		0F84856326E0FD970027D42C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84856226E0FD970027D42C /* CoreDataManager.swift */; };
+		0F9E88062779C16700F95C79 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E88052779C16700F95C79 /* placeholder.png */; };
 		0FA72E1B2771F5A10062078E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E1A2771F5A10062078E /* TabBar.swift */; };
 		0FA72E1E2771FC900062078E /* ExpensesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E1D2771FC900062078E /* ExpensesController.swift */; };
 		0FA72E202771FECC0062078E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA72E1F2771FECC0062078E /* SettingsController.swift */; };
@@ -42,6 +43,7 @@
 		0F6AFAA62770BD0D00FDD991 /* Simple-cms 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Simple-cms 4.xcdatamodel"; sourceTree = "<group>"; };
 		0F84856026E0F9220027D42C /* ViestitApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ViestitApp.xcdatamodel; sourceTree = "<group>"; };
 		0F84856226E0FD970027D42C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0F9E88052779C16700F95C79 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		0FA72E1A2771F5A10062078E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0FA72E1D2771FC900062078E /* ExpensesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesController.swift; sourceTree = "<group>"; };
 		0FA72E1F2771FECC0062078E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				0F1ABB7226DD05AA0023C662 /* Assets.xcassets */,
 				0F1ABB7426DD05AA0023C662 /* LaunchScreen.storyboard */,
 				0F1ABB7726DD05AA0023C662 /* Info.plist */,
+				0F9E88052779C16700F95C79 /* placeholder.png */,
 				0FB3374627737D70008B5DA6 /* demokuva.png */,
 				0F1ABB8026DD16BF0023C662 /* extension.swift */,
 				0FA72E1C2771F93C0062078E /* Components */,
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F1ABB7626DD05AA0023C662 /* LaunchScreen.storyboard in Resources */,
+				0F9E88062779C16700F95C79 /* placeholder.png in Resources */,
 				0FB3374727737D70008B5DA6 /* demokuva.png in Resources */,
 				0F1ABB7326DD05AA0023C662 /* Assets.xcassets in Resources */,
 			);
