@@ -44,6 +44,7 @@
 		0F84856026E0F9220027D42C /* ViestitApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ViestitApp.xcdatamodel; sourceTree = "<group>"; };
 		0F84856226E0FD970027D42C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		0F9E88052779C16700F95C79 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		0F9E88072779C37200F95C79 /* DrivingDiary 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DrivingDiary 7.xcdatamodel"; sourceTree = "<group>"; };
 		0FA72E1A2771F5A10062078E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0FA72E1D2771FC900062078E /* ExpensesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesController.swift; sourceTree = "<group>"; };
 		0FA72E1F2771FECC0062078E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -427,6 +428,7 @@
 		0F84855F26E0F9220027D42C /* Driving-Diary.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0F9E88072779C37200F95C79 /* DrivingDiary 7.xcdatamodel */,
 				0FB3374527737998008B5DA6 /* DrivingDiary 6.xcdatamodel */,
 				0FA72E212772068D0062078E /* Simple-cms 5.xcdatamodel */,
 				0F6AFAA62770BD0D00FDD991 /* Simple-cms 4.xcdatamodel */,
@@ -434,7 +436,7 @@
 				0F04748C26E61D8900474CE3 /* Simple-cms 2.xcdatamodel */,
 				0F84856026E0F9220027D42C /* ViestitApp.xcdatamodel */,
 			);
-			currentVersion = 0FB3374527737998008B5DA6 /* DrivingDiary 6.xcdatamodel */;
+			currentVersion = 0F9E88072779C37200F95C79 /* DrivingDiary 7.xcdatamodel */;
 			path = "Driving-Diary.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
