@@ -116,20 +116,28 @@ class ExpenseDetailController: UIViewController {
         view.backgroundColor = .white
         setupUI()
         
-        // Load image
-        let image = UIImage(named: "placeholder")
         
-        let imageData:NSData = image!.pngData()! as NSData
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        //Saved Image
-//        UserDefaults.standard.set(imageData, forKey: "savedImage")
         
-        // Decode
-        //let data = UserDefaults.standard.object(forKey: "savedImage") as! NSData
-        //myImageView.image = UIImage(data: data as Data)
+        /*
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = documents.appendingPathComponent("name.jpg")
         
-        fetchImageFromDirectory()
+        do {
+            let imageData = try Data(contentsOf: url)
+            print("fetched 2")
+            //myImageView.image = image
+            return UIImage(data: imageData)
+        } catch {
+            print("Unable to Write Data to Disk (\(error))")
+        }
+        return nil
         
+        */
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -169,26 +177,13 @@ class ExpenseDetailController: UIViewController {
     // MARK: Photo functions
    
     
-    private func fetchImageFromDirectory() -> UIImage? {
-        
-        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let url = documents.appendingPathComponent("name.jpg")
-        
-        do {
-            let imageData = try Data(contentsOf: url)
-            print("fetched 2")
-            //myImageView.image = image
-            return UIImage(data: imageData)
-        } catch {
-            print("Unable to Write Data to Disk (\(error))")
-        }
-        return nil
+    private func fetchImageFromDirectory() {
         
     }
     
     func show(image: UIImage) {
         myImageView.image = image
-        myImageView.isHidden = false
+        //myImageView.isHidden = false
       //addPhotoLabel.text = ""
         //imageHeight.constant = 260
         //tableView.reloadData()
@@ -203,7 +198,6 @@ class ExpenseDetailController: UIViewController {
         
         // Convert to Data
         if let data = image?.jpegData(compressionQuality: 0.6) {
-        //if let data = image?.pngData() {
             // Create URL
             let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             //let url = documents.appendingPathComponent("placeholder.jpg")
