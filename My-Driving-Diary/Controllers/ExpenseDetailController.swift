@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 protocol ExpenseDelegate {
     func saveNewExpense(
@@ -13,6 +14,7 @@ class ExpenseDetailController: UIViewController {
     
     // MARK: Photo Properties
     var image: UIImage? /// Adding photo properties
+    var delegate: ExpenseDelegate?
     
     // MARK: Properties
     let dateFormatter: DateFormatter = {
@@ -29,8 +31,6 @@ class ExpenseDetailController: UIViewController {
             details.text = expenseData.details
         }
     }
-    
-    var delegate: ExpenseDelegate?
     
     fileprivate lazy var dateLabel: UILabel = {
         let label = UILabel()
@@ -105,18 +105,24 @@ class ExpenseDetailController: UIViewController {
         button.backgroundColor = .systemGreen
         button.frame = CGRect(x: 160, y: 300, width: 100, height: 40)
         button.setTitle("Save Photo", for: .normal)
-        button.addTarget(self, action: #selector(savePhotoButtonPressed), for: .touchUpInside) ///savePhotoButtonPressed
+        button.addTarget(self, action: #selector(savePhotoToCoredata), for: .touchUpInside) ///savePhotoButtonPressed
         return button
     }()
-    
+   
+    fileprivate var fetchPhoto: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .blue
+        button.frame = CGRect(x: 240, y: 300, width: 100, height: 40)
+        button.setTitle("Fetch Photo", for: .normal)
+        button.addTarget(self, action: #selector(fetchingButtonPressed), for: .touchUpInside) ///
+        return button
+    }()
     
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -175,11 +181,6 @@ class ExpenseDetailController: UIViewController {
     }
     
     // MARK: Photo functions
-   
-    
-    private func fetchImageFromDirectory() {
-        
-    }
     
     func show(image: UIImage) {
         myImageView.image = image
@@ -215,6 +216,21 @@ class ExpenseDetailController: UIViewController {
         }
     }
     
+    @objc func savePhotoToCoredata() {
+        print("savePhotoToCoredata")
+    
+        if let imageData = myImageView.image?.jpegData(compressionQuality: 0.6) {
+            CoreDataManager.shared.saveImage(data: imageData)
+        }
+    }
+    
+    @objc func fetchingButtonPressed() {
+        print("fetchingButtonPressed")
+        
+        let lataa = CoreDataManager.shared.fetchImage()
+        myImageView.image = UIImage(data: lataa[0].storedImage!)
+    }
+    
 
     
     
@@ -228,6 +244,7 @@ class ExpenseDetailController: UIViewController {
         view.addSubview(myImageView)
         view.addSubview(loadPhoto)
         view.addSubview(savePhoto)
+        view.addSubview(fetchPhoto)
         
         dateLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true

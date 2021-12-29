@@ -15,6 +15,35 @@ struct CoreDataManager {
         return container
     }()
     
+    // MARK: Save Image
+    func saveImage(data: Data) {
+        let context = persistentContainer.viewContext
+        let imageInstance = Expense(context: context)
+        imageInstance.storedImage = data
+        
+        do {
+            try context.save()
+            print("Image is saved")
+        } catch let error {
+            print("Failed to save image", error)
+        }
+    }
+    
+    // MARK: Fetch Image
+    func fetchImage() -> [Expense] {
+        let context = persistentContainer.viewContext
+        var fetchingImage = [Expense]()
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Expense")
+        
+        do {
+            fetchingImage = try context.fetch(fetchRequest) as! [Expense]
+        } catch {
+            print("Error while fetching the image")
+        }
+        return fetchingImage
+    }
+    
     // MARK: SINGLE NOTE FUNCTIONS
     // MARK: Create New Note
     func createNewNote(
