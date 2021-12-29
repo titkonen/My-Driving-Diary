@@ -45,70 +45,70 @@ class NoteDetailController: UIViewController {
         return label
     }()
     
-    fileprivate var endingPlace: UITextView = {
-        let textField = UITextView()
+    fileprivate var endingPlace: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Route ending place"
-        textField.isEditable = true
+        textField.placeholder = "Route ending place"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
-        textField.font = UIFont.systemFont(ofSize: 21, weight: .medium)
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        textField.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
     }()
     
-    fileprivate var startingPlace: UITextView = {
-        let textField = UITextView()
+    fileprivate var startingPlace: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Route starting place"
-        textField.isEditable = true
+        textField.placeholder = "Route starting place"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
     }()
     
-    fileprivate var startingKm: UITextView = {
-        let textField = UITextView()
+    fileprivate var startingKm: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Starting km"
-        textField.isEditable = true
+        textField.placeholder = "Starting Km"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
     }()
     
-    fileprivate var distanceKm: UITextView = {
-        let textField = UITextView()
+    fileprivate var distanceKm: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Total distance"
-        textField.isEditable = true
+        textField.placeholder = "Total Distance"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
     }()
     
-    fileprivate var endingKm: UITextView = {
-        let textField = UITextView()
+    fileprivate var endingKm: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "Ending km"
-        textField.isEditable = true
+        textField.placeholder = "Ending Km"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
@@ -120,8 +120,8 @@ class NoteDetailController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.text = "Drive description"
         textField.isEditable = true
-        textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        textField.textColor = .gray
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.isSelectable = true
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -143,11 +143,11 @@ class NoteDetailController: UIViewController {
         if self.noteData == nil {
             delegate?.saveNewNote(
                 timestamp: Date(),
-                endingPlace: endingPlace.text,
-                startingPlace: startingPlace.text,
-                startingKm: startingKm.text,
-                distanceKm: distanceKm.text,
-                endingKm: endingKm.text,
+                endingPlace: endingPlace.text ?? "Route ending place",
+                startingPlace: startingPlace.text ?? "Route starting place",
+                startingKm: startingKm.text ?? "Starting Km",
+                distanceKm: distanceKm.text ?? "Total Distance",
+                endingKm: endingKm.text ?? "Ending Km",
                 driveDescription: driveDescription.text
             )
         } else {
@@ -231,7 +231,7 @@ class NoteDetailController: UIViewController {
         dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         
-        endingPlace.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20).isActive = true
+        endingPlace.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
         endingPlace.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         endingPlace.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         endingPlace.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -720).isActive = true
