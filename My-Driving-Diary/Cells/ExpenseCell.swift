@@ -7,14 +7,14 @@ class ExpenseCell: UITableViewCell {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM/dd/yy"
             dateLabel.text = dateFormatter.string(from: expenseData.timestamp ?? Date())
-            amountLabel.text = expenseData.amount
+            expenseLabel.text = expenseData.expenseType
         }
     }
     
     /// amountLabel
-    fileprivate var amountLabel: UILabel = {
+    fileprivate var expenseLabel: UILabel = {
         let label = UILabel()
-        label.text = "Amount label"
+        label.text = "Expense type label"
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -39,7 +39,7 @@ class ExpenseCell: UITableViewCell {
     
     /// vertical stack view
     fileprivate lazy var verticalStackView: UIStackView = {
-        let s = UIStackView(arrangedSubviews: [amountLabel, horizontalStackView])
+        let s = UIStackView(arrangedSubviews: [expenseLabel, horizontalStackView])
         s.axis = .vertical
         s.spacing = 4
         s.translatesAutoresizingMaskIntoConstraints = false

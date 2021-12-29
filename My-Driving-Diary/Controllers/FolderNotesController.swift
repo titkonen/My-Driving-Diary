@@ -4,14 +4,6 @@ class FolderNotesController: UITableViewController, UISearchBarDelegate {
     
     // MARK: Properties
     let searchController = UISearchController(searchResultsController: nil)
-    
-   /* var folderData: ClientsCategory! {
-        didSet {
-            notes = CoreDataManager.shared.fetchNotes(from: folderData)
-            filteredNotes = notes
-        }
-    }*/
-    
     fileprivate var notes = [Note]()
     fileprivate var filteredNotes = [Note]()
     var cachedText: String = ""

@@ -13,7 +13,6 @@ class ExpensesController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Expenses"
-        view.backgroundColor = .white
         setupTableView()
         setupExpenseSearchBar()
     }
@@ -94,7 +93,7 @@ extension ExpensesController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! ExpenseCell ///Casting =>  as! ExpenseCell  to custom cell
-        let noteForRow = self.expenses[indexPath.row]
+        let noteForRow = self.filteredExpenses[indexPath.row]
         cell.expenseData = noteForRow
         return cell
     }
@@ -106,7 +105,7 @@ extension ExpensesController {
     ///Push content to ExpenseDetailController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let expenseDetailController = ExpenseDetailController()
-        let noteForRow = self.expenses[indexPath.row]
+        let noteForRow = self.filteredExpenses[indexPath.row]
         expenseDetailController.expenseData = noteForRow
         navigationController?.pushViewController(expenseDetailController, animated: true)
     }
