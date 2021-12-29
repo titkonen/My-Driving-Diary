@@ -33,7 +33,7 @@ class ExpenseDetailController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        //label.textColor = .systemGray
         label.text = dateFormatter.string(from: Date())
         label.textAlignment = .center
         return label
@@ -45,7 +45,7 @@ class ExpenseDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Amount of Expense"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         textField.clipsToBounds = true
@@ -59,7 +59,7 @@ class ExpenseDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Type of Expense"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -73,7 +73,7 @@ class ExpenseDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Details of Expense"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -84,8 +84,6 @@ class ExpenseDetailController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
         setupUI()
     }
     

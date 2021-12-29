@@ -39,7 +39,7 @@ class NoteDetailController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.textColor = .gray
+        //label.textColor = .gray
         label.text = dateFormatter.string(from: Date())
         label.textAlignment = .center
         return label
@@ -51,7 +51,7 @@ class NoteDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Route ending place"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         textField.clipsToBounds = true
@@ -65,7 +65,7 @@ class NoteDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Route starting place"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -79,7 +79,7 @@ class NoteDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Starting Km"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -93,7 +93,7 @@ class NoteDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Total Distance"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -107,7 +107,7 @@ class NoteDetailController: UIViewController {
         textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Ending Km"
-        textField.textColor = .black
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
@@ -120,7 +120,7 @@ class NoteDetailController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.text = "Drive description"
         textField.isEditable = true
-        textField.textColor = .gray
+        //textField.textColor = .systemGray
         textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.isSelectable = true
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -132,8 +132,6 @@ class NoteDetailController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .white
         setupUI()
     }
     
