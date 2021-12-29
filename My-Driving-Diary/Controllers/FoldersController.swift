@@ -72,9 +72,9 @@ class FoldersController: UITableViewController {
         addAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (_) in
             addAlert.dismiss(animated: true)
             // Insert a new folder with the correct title
-            guard let title = self.textField.text else {
+            /*guard let title = self.textField.text else {
                 return
-            }
+            }*/
            // let newFolder = CoreDataManager.shared.createNoteFolder(title: title) ///Creates new folder to the list and coredata
            // noteFolders.append(newFolder)
             self.tableView.insertRows(at: [IndexPath(row: noteFolders.count - 1, section: 0)], with: .fade)
@@ -117,7 +117,7 @@ class FoldersController: UITableViewController {
 extension FoldersController {
     
     // MARK: DELETING
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    /*override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (rowAction, indexPath) in
             
            /* let noteFolder = noteFolders[indexPath.row]
@@ -128,6 +128,15 @@ extension FoldersController {
             
         }
         return [deleteAction]
+    }*/
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let contextItem = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            //Code I want to do here
+        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+
+        return swipeActions
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,7 +157,7 @@ extension FoldersController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let folderNotesController = FolderNotesController()
-        let folderForRowSelected = noteFolders[indexPath.row]
+        _ = noteFolders[indexPath.row]
         //folderNotesController.folderData = folderForRowSelected
         
         navigationController?.pushViewController(folderNotesController, animated: true)

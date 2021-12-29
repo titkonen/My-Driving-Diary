@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UINavigationBar.appearance().prefersLargeTitles = true
         
-        let navController = UINavigationController(rootViewController: FolderNotesController())
+        _ = UINavigationController(rootViewController: FolderNotesController())
         
         //window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         //window?.windowScene = windowScene
