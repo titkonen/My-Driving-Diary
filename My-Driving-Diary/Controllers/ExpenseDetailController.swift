@@ -9,7 +9,7 @@ protocol ExpenseDelegate {
     )
 }
 
-class ExpenseDetailController: UIViewController, UITextViewDelegate {
+class ExpenseDetailController: UIViewController {
     
     // MARK: Properties
     let dateFormatter: DateFormatter = {
@@ -32,22 +32,22 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
     fileprivate lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         label.text = dateFormatter.string(from: Date())
         label.textAlignment = .center
         return label
     }()
     
-    fileprivate var amount: UITextView = {
-        let textField = UITextView()
+    fileprivate var amount: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "amount"
-        textField.isEditable = true
+        textField.placeholder = "Amount of Expense"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
-        textField.font = UIFont.systemFont(ofSize: 21, weight: .medium)
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        textField.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
@@ -60,36 +60,21 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Type of Expense"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
     }()
     
-    /*
-    fileprivate var expenseType: UITextView = {
-        let textField = UITextView()
+    fileprivate var details: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "expenseType"
-        textField.isEditable = true
+        textField.placeholder = "Details of Expense"
         textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.clipsToBounds = true
-        textField.layer.cornerRadius = 8
-        return textField
-    }() */
-    
-    fileprivate var details: UITextView = {
-        let textField = UITextView()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "details"
-        textField.isEditable = true
-        textField.textColor = .black
-        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
-        textField.isSelectable = true
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
@@ -99,10 +84,6 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        amount.delegate = self
-        //expenseType.delegate = self
-        //details.delegate = self
         
         view.backgroundColor = .white
         setupUI()
@@ -114,9 +95,9 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
         if self.expenseData == nil {
             delegate?.saveNewExpense(
                 timestamp: Date(),
-                amount: amount.text,
+                amount: amount.text ?? "Amount of Expense",
                 expenseType: expenseType.text ?? "Type of Expense",
-                details: details.text
+                details: details.text ?? "Details of Expense"
             )
         } else {
             /// Amount
@@ -143,17 +124,6 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
     }
     
     // MARK: Functions
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        amount.text = ""
-        //expenseType.text = ""
-        //details.text = ""
-    }
-    
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        amount.resignFirstResponder()
-        return true
-    }
-    
     fileprivate func setupUI() {
         view.addSubview(dateLabel)
         view.addSubview(amount)
@@ -164,10 +134,10 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
         dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         
-        amount.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20).isActive = true
+        amount.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
         amount.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         amount.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        amount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -720).isActive = true
+        amount.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -710).isActive = true
         
         expenseType.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
         expenseType.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
@@ -178,7 +148,7 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
         details.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         details.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         details.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -610).isActive = true
+  
     }
 
 }
-
