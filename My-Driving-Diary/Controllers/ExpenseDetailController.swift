@@ -53,6 +53,21 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
         return textField
     }()
     
+    fileprivate var expenseType: UITextField = {
+        let textField = UITextField()
+        textField.leftView = UIView(frame: CGRect(x: 10, y: 10, width: 15, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Type of Expense"
+        textField.textColor = .black
+        textField.backgroundColor = UIColor.gray.withAlphaComponent(0.1)
+        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        textField.clipsToBounds = true
+        textField.layer.cornerRadius = 8
+        return textField
+    }()
+    
+    /*
     fileprivate var expenseType: UITextView = {
         let textField = UITextView()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +80,7 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 8
         return textField
-    }()
+    }() */
     
     fileprivate var details: UITextView = {
         let textField = UITextView()
@@ -100,7 +115,7 @@ class ExpenseDetailController: UIViewController, UITextViewDelegate {
             delegate?.saveNewExpense(
                 timestamp: Date(),
                 amount: amount.text,
-                expenseType: expenseType.text,
+                expenseType: expenseType.text ?? "Type of Expense",
                 details: details.text
             )
         } else {
