@@ -9,7 +9,7 @@ protocol ExpenseDelegate {
     )
 }
 
-class ExpenseDetailController: UIViewController {
+class ExpenseDetailController: UIViewController, UITextViewDelegate {
     
     // MARK: Properties
     let dateFormatter: DateFormatter = {
@@ -85,6 +85,10 @@ class ExpenseDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        amount.delegate = self
+        //expenseType.delegate = self
+        //details.delegate = self
+        
         view.backgroundColor = .white
         setupUI()
     }
@@ -124,6 +128,17 @@ class ExpenseDetailController: UIViewController {
     }
     
     // MARK: Functions
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        amount.text = ""
+        //expenseType.text = ""
+        //details.text = ""
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        amount.resignFirstResponder()
+        return true
+    }
+    
     fileprivate func setupUI() {
         view.addSubview(dateLabel)
         view.addSubview(amount)
