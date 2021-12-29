@@ -118,13 +118,15 @@ extension ExpensesController: ExpenseDelegate {
         timestamp: Date,
         amount: String,
         expenseType: String,
-        details: String
+        details: String,
+        storedImage: Data
         ) {
         let newExpense = CoreDataManager.shared.createNewExpense(
             timestamp: timestamp,
             amount: amount,
             expenseType: expenseType,
-            details: details
+            details: details,
+            storedImage: storedImage
         ) ///Creates new expense to the list and coredata
         expenses.append(newExpense)
         filteredExpenses.append(newExpense)

@@ -6,7 +6,8 @@ protocol ExpenseDelegate {
         timestamp: Date,
         amount: String,
         expenseType: String,
-        details: String
+        details: String,
+        storedImage: Data
     )
 }
 
@@ -127,23 +128,7 @@ class ExpenseDetailController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
-        /*
-        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let url = documents.appendingPathComponent("name.jpg")
-        
-        do {
-            let imageData = try Data(contentsOf: url)
-            print("fetched 2")
-            //myImageView.image = image
-            return UIImage(data: imageData)
-        } catch {
-            print("Unable to Write Data to Disk (\(error))")
-        }
-        return nil
-        
-        */
+        ///Empty
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -154,7 +139,8 @@ class ExpenseDetailController: UIViewController {
                 timestamp: Date(),
                 amount: amount.text,
                 expenseType: expenseType.text,
-                details: details.text
+                details: details.text,
+                storedImage: UIImage(storedImage: )
             )
         } else {
             /// Amount
@@ -171,11 +157,17 @@ class ExpenseDetailController: UIViewController {
                 return
             }
 
+            /// StoredImage
+            guard let newStoredImage = self.myImageView.image else {
+                return
+            }
+            
             CoreDataManager.shared.saveUpdatedExpense(
                 expense: self.expenseData,
                 newAmount: newAmount,
                 newExpenseType: newExpenseType,
-                newDetails: newDetails
+                newDetails: newDetails,
+                newStoredImage: newStoredImage
             )
         }
     }

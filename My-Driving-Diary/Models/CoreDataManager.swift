@@ -129,7 +129,9 @@ struct CoreDataManager {
         timestamp: Date,
         amount: String,
         expenseType: String,
-        details: String) -> Expense {
+        details: String,
+        storedImage: Data
+    ) -> Expense {
         //noteFolder: ClientsCategory) -> Note {
         let context = persistentContainer.viewContext
         let newExpense = NSEntityDescription.insertNewObject(forEntityName: "Expense", into: context) as! Expense
@@ -138,6 +140,7 @@ struct CoreDataManager {
         newExpense.amount = amount
         newExpense.expenseType = expenseType
         newExpense.details = details
+        newExpense.storedImage = storedImage
         
         do {
             try context.save()
@@ -148,16 +151,7 @@ struct CoreDataManager {
         }
     }
     
-    /*
     // MARK: Fetch expenses
-    func fetchExpenses(from Expense) -> [Expense] {
-        guard let folderNotes = expenses?.allObjects as? [Expense] else {
-            return []
-        }
-        return folderNotes
-    }*/
-    
-    // MARK: Fetch expenses v2
     func fetchExpenses() -> [Expense] {
         let context = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Expense>(entityName: "Expense")
@@ -190,7 +184,8 @@ struct CoreDataManager {
         expense: Expense,
         newAmount: String,
         newExpenseType: String,
-        newDetails: String
+        newDetails: String,
+        newStoredImage: Data
     ) {
         let context = persistentContainer.viewContext
         
@@ -198,6 +193,7 @@ struct CoreDataManager {
         expense.amount = newAmount
         expense.expenseType = newExpenseType
         expense.details = newDetails
+        expense.storedImage = newStoredImage
         
         do {
             try context.save()
